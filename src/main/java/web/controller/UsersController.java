@@ -13,8 +13,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import web.model.User;
 import web.service.UserService;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/users")
+
 public class UsersController {
 
     private final UserService userService;
@@ -42,7 +45,7 @@ public class UsersController {
     }
 
     @PostMapping("")
-    public String create(@ModelAttribute("user") User user) {
+    public String create(@ModelAttribute("user") @Valid User user ) {
         userService.addUser(user);
         return "redirect:/users";
     }

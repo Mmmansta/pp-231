@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.*;
 
 @Entity
 @Table(name = "users")
@@ -14,9 +15,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "name")
+    @Pattern(regexp = "[A-z]+",message = "hghghj")
     private String name;
     @Column(name = "age")
+    @Min(0)
     private int age;
+    @NotEmpty
+    @Email
     @Column(name = "email")
     private String email;
 

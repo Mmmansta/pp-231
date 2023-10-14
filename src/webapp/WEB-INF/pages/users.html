@@ -28,17 +28,45 @@
             <td th:text="${user.email}"/>
             <td>
                 <div class="divBox">
-                    <a th:href="@{/users/{id}(id=${user.getId()})}"> VIEW USER </a>
+                    <a th:href="@{/users/{id}(id=${user.getId()})}" target="_self"> VIEW USER </a>
                 </div>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
+<script>
+    function handleErrorResponse(xhr) {
+        if (xhr.status === 400) {
+            // Обработка ошибки 400
+            const errorMessage = "Ошибка: Неверный запрос (400 Bad Request)";
+            document.getElementById("error-message").innerText = errorMessage;
+        }
+    }
 
+    function sendrequest(){
+        var xhr = new XMLHttpRequest();
+        xhr.open("GET", "/users/new", true);
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (xhr.status === 200) {
+                    // Обработка успешного ответа
+                    console.log("Успешный ответ: " + xhr.responseText);
+                } else {
+                    // Обработка ошибки
+                    handleErrorResponse(xhr);
+                }
+            }
+        };
+        xhr.send();
+    }
+    // Пример отправки AJAX-запроса
+
+
+</script>
 <br/>
 <hr style="width: 50%">
-<a href="/users/new"> Create new user</a>
+<a ONCLICK="sendrequest()"> Create new user</a>
 
 </body>
 </html>
