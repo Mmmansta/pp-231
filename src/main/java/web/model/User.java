@@ -15,13 +15,13 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     @Column(name = "name")
-    @Pattern(regexp = "[A-z]+",message = "hghghj")
+    @Pattern(regexp = "[A-z]+",message = "only words")
     private String name;
     @Column(name = "age")
-    @Min(0)
+    @Min(value = 0,message = "age must be over 0")
     private int age;
     @NotEmpty
-    @Email
+    @Email(message = "write correct email")
     @Column(name = "email")
     private String email;
 
